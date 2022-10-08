@@ -70,6 +70,7 @@ public class PlayCardShuffle : MonoBehaviour
                 z -= 0.11f;
             }
             cardList[n].position = new Vector3(x, y, z);
+            cardList[n].rotation = Quaternion.AngleAxis(180, new Vector3(1, 0, 0));
             x += 0.065f;
             
         }
