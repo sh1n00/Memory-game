@@ -9,7 +9,7 @@ public class CardInfomation : MonoBehaviour
 {
     public string suit;
     public int number;
-    public class CardInfo { public string suit; public int number; }
+    public class CardInfo { public GameObject obj; public string suit; public int number; }
     //public Dictionary CardInfo<string suit, int number>;
     // Start is called before the first frame update
     void Start()
@@ -23,23 +23,17 @@ public class CardInfomation : MonoBehaviour
         
     }
 
-    public void GetObject()
-    {
-        var objectName = this.gameObject.name;
-
-        number = GetInfo(objectName).number;
-        suit = GetInfo(objectName).suit;
-        
-
-    }
-    public static CardInfo GetInfo(string objectName)
+    
+    public static CardInfo GetInfo(GameObject obj)
     {
         
         var card = new CardInfo();
 
-        string[] arr = objectName.Split('_');
+        
+        string[] arr = obj.name.Split('_');
         if(arr[1] == "PlayingCards")
         {
+            card.obj = obj;
             card.suit = Regex.Replace(arr[2], "[0-9]", "");
             int.TryParse(Regex.Replace(arr[2], "[^ 0-9 _]", ""), out card.number);
         }

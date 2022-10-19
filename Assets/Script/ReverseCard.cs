@@ -15,4 +15,9 @@ public class ReverseCard : MonoBehaviour, IPointerClickHandler
         transform.rotation = Quaternion.AngleAxis(0, new Vector3(1, 0, 0));
         Debug.Log("Click");
     }
+    public static void Reverse(GameObject card)
+    {
+        card.transform.eulerAngles += 180f * Vector3.forward;
+
+    }
 }
