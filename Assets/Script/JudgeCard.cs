@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class JudgeCard : MonoBehaviour
 {
+    public float waitTime;
     float angularSpeed = 180f;
     bool frag = true;
     // Start is called before the first frame update
@@ -19,7 +20,7 @@ public class JudgeCard : MonoBehaviour
         {
             if (frag == true)
             {
-                Invoke("Judge", 5f);
+                Invoke("Judge", waitTime);
                 frag = false;
             }
         }
@@ -35,8 +36,18 @@ public class JudgeCard : MonoBehaviour
         
         if (GetClickedGameObject.cardList[0].number == GetClickedGameObject.cardList[1].number)
         {
+            //ゲームオブジェクトを無効化
+            GetClickedGameObject.cardList[0].obj.SetActive(false);
+            GetClickedGameObject.cardList[1].obj.SetActive(false);
+
+            //カードリストから削除
+            
+
+
             GetClickedGameObject.cardList.Clear();
-            Debug.Log("get point");
+            Player.PlayerList[TurnChange.Turn].score += 1; 
+            Debug.Log(Player.PlayerList[TurnChange.Turn].name);
+            Debug.Log(Player.PlayerList[TurnChange.Turn].score);
         }
         else
         {
@@ -44,10 +55,14 @@ public class JudgeCard : MonoBehaviour
             ReverseCard.Reverse(GetClickedGameObject.cardList[1].obj);
             GetClickedGameObject.cardList.Clear();
 
-            Debug.Log("sadfadf");
+            Debug.Log(TurnChange.Turn);
+            Debug.Log(Player.PlayerList);
+            Debug.Log(Player.PlayerList[TurnChange.Turn].name);
+            Debug.Log(Player.PlayerList[TurnChange.Turn].score);
+
+            TurnChange.Change();
+
+            Debug.Log(Player.PlayerList[TurnChange.Turn].name);
         }
-            
-        
-        
     }
 }

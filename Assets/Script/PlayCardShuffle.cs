@@ -7,16 +7,19 @@ public class PlayCardShuffle : MonoBehaviour
     //public List<GameObject> ObjectList = new List<GameObject>();
     public Transform AllCard;
     private int ObjectCount;
+    public Transform[] cardList;
     // Start is called before the first frame update
     void Start()
     {
         var cardList = GetChildren(AllCard);
         Shuffle(cardList);
         Placement(cardList);
-        for(var i = 0; i < cardList.Length; ++i)
-        {
-            Debug.Log(cardList[i]);
-        }
+
+        //var allCard = new CardInfomation.CardInfo();
+        //for(var i = 0; i < cardList.Length; ++i)
+        //{
+        //    Debug.Log(cardList[i]);
+        //}
     }
 
     // Update is called once per frame
